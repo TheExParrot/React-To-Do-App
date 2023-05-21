@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import TaskList from "./TaskList";
 import SaveButton from "./SaveButton";
+import LoadButton from "./LoadButton";
 
 /**
  * App Component - Acts as the main manager of the application
@@ -23,15 +24,33 @@ const App = () => {
         setTasks(updatedTasks);
     };
 
+    // Function to Load a file
+    const handleLoad = (content) => {
+        try {
+            // Get JSON content
+            const parsedContent = JSON.parse(content);
+            if (Array.isArray(parsedContent) && parsedContent.every((task) => typeof task === 'string')) {
+                // If JSON meets required format, set the task list equal to its content
+                setTasks(parsedContent);
+            } else {
+                // Otherwise, do nothing
+                console.error('Invalid JSON format. Expected an array of strings.');
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+    };
+
     return (
         <div>
-            <h1>Task List</h1>
+            <h1>To-Do App</h1>
             <TaskList
                 tasks={tasks}
                 handleAddTask={handleAddTask}
                 handleRemoveTask={handleRemoveTask}
             />
-            <SaveButton tasks={tasks} />
+            <SaveButton tasks={tasks}/>
+            <LoadButton handleLoad={handleLoad}/>
         </div>
     );
 };
