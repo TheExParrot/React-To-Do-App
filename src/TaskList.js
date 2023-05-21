@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 /**
  * TaskList Component - Contains the List of Tasks and functionality
  */
-const TaskList = () => {
+const TaskList = ({ tasks, handleAddTask, handleRemoveTask }) => {
 
-    // Props to manage list of tasks and input new tasks
-    const [tasks, setTasks] = useState([]);
+    // Props to manage new tasks
     const [newTask, setNewTask] = useState('');
 
     // Function to Handle Input Changes and write characters to newTask
@@ -17,6 +16,7 @@ const TaskList = () => {
     // Function to handle enter press and then add new task when pressed
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
+            handleAddTask(newTask);
             addTask();
         }
     }
@@ -24,16 +24,14 @@ const TaskList = () => {
     // Function to add tasks to the list of tasks
     const addTask = () => {
         if (newTask.trim() !== '') {
-            setTasks([...tasks, newTask]);
+            handleAddTask(newTask);
             setNewTask('');
         }
     };
 
     // Function to remove a task from the list of tasks
     const removeTask = (index) => {
-        const updatedTasks = [...tasks];
-        updatedTasks.splice(index, 1);
-        setTasks(updatedTasks);
+        handleRemoveTask(index);
     };
 
     // HTML Return
