@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import TaskList from "./TaskList";
-import SaveButton from "./SaveButton";
-import LoadButton from "./LoadButton";
+import TaskList from "./components/TaskList";
+import SaveButton from "./components/SaveButton";
+import LoadButton from "./components/LoadButton";
 import './App.css';
 
 
