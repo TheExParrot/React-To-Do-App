@@ -17,7 +17,7 @@ const SaveButton = ({ tasks }) => {
         document.body.removeChild(element);
     };
 
-    return <button onClick={handleSave}>Save List</button>;
+    return <button onClick={handleSave}>Save Tasks</button>;
 };
 
 export default SaveButton;

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 /**
  * LoadButton Component - Contains the Load Button and functionality
  */
 const LoadButton = ({ handleLoad }) => {
+
+    // Create reference object
+    const fileInputRef = useRef(null);
+
+    // Handle displayed button 'Load Tasks' click
+    const handleButtonClick = () => {
+        fileInputRef.current.click();
+    };
 
     // Function to handle loading the file and changing contents
     const handleFileChange = (e) => {
@@ -16,12 +24,20 @@ const LoadButton = ({ handleLoad }) => {
             handleLoad(content);
         };
         reader.readAsText(file);
-
     };
 
     return (
         <div>
-            <input type="file" onChange={handleFileChange} accept=".json" />
+            <button className="load-button" onClick={handleButtonClick}>
+                Load Tasks
+            </button>
+            <input
+                ref={fileInputRef}
+                type="file"
+                onChange={handleFileChange}
+                accept=".json"
+                style={{ display: 'none' }}
+            />
         </div>
     );
 };

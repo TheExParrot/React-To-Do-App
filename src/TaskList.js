@@ -36,26 +36,31 @@ const TaskList = ({ tasks, handleAddTask, handleRemoveTask }) => {
 
     // HTML Return
     return (
-        <div>
-            <input
-                type="text"
-                value={newTask}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress}
-                placeholder="Enter a new task"
-            />
-            <button onClick={addTask}>Add Task</button>
+        <div className="task-list-container">
+            <div className="input-container">
+                <input
+                    type="text"
+                    className="task-input"
+                    value={newTask}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyPress}
+                    placeholder="Enter a new task"
+                />
+                <button className="add-button" onClick={addTask}>Add Task</button>
+            </div>
 
-            <ul>
+            <ul className="task-list">
                 {tasks.map((task, index) => (
-                    <li key={index}>
-                        {task}
-                        <button onClick={() => removeTask(index)}>Remove</button>
+                    <li key={index} className="task-item">
+                        <span>{task}</span>
+                        <button className="remove-button" onClick={() => removeTask(index)}>X</button>
                     </li>
                 ))}
             </ul>
         </div>
     );
+
+
 };
 
 export default TaskList;

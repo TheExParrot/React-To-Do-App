@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import TaskList from "./TaskList";
 import SaveButton from "./SaveButton";
 import LoadButton from "./LoadButton";
+import './App.css';
+
 
 /**
  * App Component - Acts as the main manager of the application
@@ -44,13 +46,17 @@ const App = () => {
     return (
         <div>
             <h1>To-Do App</h1>
-            <TaskList
-                tasks={tasks}
-                handleAddTask={handleAddTask}
-                handleRemoveTask={handleRemoveTask}
-            />
-            <SaveButton tasks={tasks}/>
-            <LoadButton handleLoad={handleLoad}/>
+            <div className="task-list-container">
+                <TaskList
+                    tasks={tasks}
+                    handleAddTask={handleAddTask}
+                    handleRemoveTask={handleRemoveTask}
+                />
+                <div className="button-container">
+                    <SaveButton tasks={tasks} />
+                    <LoadButton handleLoad={handleLoad} />
+                </div>
+            </div>
         </div>
     );
 };
