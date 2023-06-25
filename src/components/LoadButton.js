@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import "./Button.css";
 
 /**
  * LoadButton Component - Contains the Load Button and functionality
